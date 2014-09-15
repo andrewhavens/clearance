@@ -44,14 +44,14 @@ describe Clearance::Constraints::SignedIn do
 
   it 'matches if the user-provided block returns true' do
     user = create(:user)
-    constraint = Clearance::Constraints::SignedIn.new { |signed_in_user| true }
+    constraint = Clearance::Constraints::SignedIn.new { true }
     request = request_with_remember_token(user.remember_token)
     expect(constraint.matches?(request)).to eq true
   end
 
   it 'does not match if the user-provided block returns false' do
     user = create(:user)
-    constraint = Clearance::Constraints::SignedIn.new { |signed_in_user| false }
+    constraint = Clearance::Constraints::SignedIn.new { false }
     request = request_with_remember_token(user.remember_token)
     expect(constraint.matches?(request)).to eq false
   end
